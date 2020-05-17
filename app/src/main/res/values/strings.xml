@@ -13,9 +13,12 @@
     <string name="invalid_password">Password must be >6 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="app_description">"My Budget: the complete system for your finances"</string>
-
     <string name="error_signup_empty">"Please, enter all your information"</string>
     <string name="error_psw_length">"Password must be more than 6 digit"</string>
     <string name="error">"Error"</string>
     <string name="welcome">"Welcome"</string>
+    <string name="profile">"Profile"</string>
+    <string name="edit_profile">"Edit Profile"</string>
+    <string name="logout">"Logout"</string>
+    <string name="title_activity_profile">"Profile"</string>
 </resources>
