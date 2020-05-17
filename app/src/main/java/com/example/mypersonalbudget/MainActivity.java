@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
             } */
         }
     };
+
+    //Per collegare il file xml del menù alla main activity
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.profile_menu, menu);
+        return true;
+    }
 
     //Per gestire il click dei vari item del menù
     @Override
