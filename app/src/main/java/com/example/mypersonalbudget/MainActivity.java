@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 profile();
                 return true;
             case R.id.edit_profile:
-                logout();
+                editProfile();
                 return true;
             case R.id.logout:
                 logout();
@@ -102,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void profile(){
         Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void editProfile(){
+        Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
         startActivity(intent);
     }
 }
