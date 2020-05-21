@@ -84,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.edit_profile:
                 editProfile();
                 return true;
+            case R.id.change_password:
+                changePassword();
+                return true;
             case R.id.logout:
                 logout();
                 return true;
@@ -107,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void editProfile(){
         Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void changePassword(){
+        Intent intent = new Intent(getApplicationContext(), ChangePasswordActivity.class);
         startActivity(intent);
     }
 }

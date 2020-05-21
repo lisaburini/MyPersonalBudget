@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="118dp"
         android:text="---"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="63dp"
         android:text="---"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_name" />
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="63dp"
         android:text="---"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_last_name" />
@@ -43,6 +43,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="114dp"
         android:text="@string/prompt_name"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -54,6 +55,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="60dp"
         android:text="@string/prompt_last_name"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_name" />
@@ -65,6 +67,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="60dp"
         android:text="@string/prompt_email"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_lname" />

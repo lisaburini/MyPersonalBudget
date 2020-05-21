@@ -45,6 +45,11 @@
             android:label="@string/title_activity_edit_profile">
         </activity>
 
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:label="@string/change_password">
+        </activity>
+
 
     </application>
 

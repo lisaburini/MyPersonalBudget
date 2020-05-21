@@ -8,6 +8,10 @@
         android:title="@string/edit_profile" />
 
     <item
+        android:id="@+id/change_password"
+        android:title="@string/change_password" />
+
+    <item
         android:id="@+id/logout"
         android:title="@string/logout" />
 </menu>
