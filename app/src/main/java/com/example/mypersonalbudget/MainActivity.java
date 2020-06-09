@@ -5,22 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-
+import com.example.mypersonalbudget.fragments.FragmentHome;
+import com.example.mypersonalbudget.fragments.FragmentStatistics;
+import com.example.mypersonalbudget.fragments.FragmentTransactions;
 import com.example.mypersonalbudget.ui.login.IntroActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -30,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private FirebaseAuth firebaseAuth;
+    private BottomNavigationView bottomNav;
+    private FragmentHome fragmentHome;
+    private FragmentTransactions fragmentTransactions;
+    private FragmentStatistics fragmentStatistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,36 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.addAuthStateListener(authStateListener);
 
-        getSupportActionBar().setTitle(getString(R.string.welcome));
+        getSupportActionBar().setTitle(getString(R.string.app_name));
+
+        fragmentHome = new FragmentHome();
+        fragmentTransactions = new FragmentTransactions();
+        fragmentStatistics = new FragmentStatistics();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentHome).commit();
+
+        bottomNav = findViewById(R.id.bottom_nav);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+                switch (item.getItemId()) {
+                    case R.id.menu_home:
+                        selectedFragment = fragmentHome;
+                        break;
+                    case R.id.menu_transactions:
+                        selectedFragment = fragmentTransactions;
+                        break;
+                    case R.id.menu_statistics:
+                        selectedFragment = fragmentStatistics;
+                        break;
+                }
+                if(selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                }
+                return true;
+            }
+        });
 
     }
 

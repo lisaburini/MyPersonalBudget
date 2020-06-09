@@ -31,4 +31,7 @@
     <string name="update_btn">Update</string>
     <string name="change_password">Change Password</string>
     <string name="update_password">"Password successfully updated!"</string>
+    <string name="home">Home</string>
+    <string name="transactions">Transactions</string>
+    <string name="statistics">Statistics</string>
 </resources>

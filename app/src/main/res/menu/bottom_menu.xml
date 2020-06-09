@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_24dp"
+        android:checked="true"/>
+    <item
+        android:id="@+id/menu_transactions"
+        android:title="@string/transactions"
+        android:icon="@drawable/ic_transactions_24dp"/>
+    <item
+        android:id="@+id/menu_statistics"
+        android:title="@string/statistics"
+        android:icon="@drawable/ic_equalizer_24dp"/>
+</menu>
