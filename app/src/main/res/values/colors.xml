@@ -5,4 +5,5 @@
     <color name="colorAccent">#3700B3</color>
     <color name="textColorPrimary">#000000</color>
     <color name="textColorPrimaryInverse">#FFFFFF</color>
+    <color name="sfondo_logo">#5CDC83</color>
 </resources>

@@ -7,17 +7,42 @@
 
     <ImageView
         android:id="@+id/logo_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="111dp"
+        android:adjustViewBounds="false"
+        android:background="#80FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:cropToPadding="true"
+        android:foreground="@drawable/logo_app_arrotondato"
+        android:scaleType="centerInside"
         android:src="@drawable/ic_launcher_background"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/text_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="311dp"
+        android:layout_height="376dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="@string/welcome_description"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_app" />
 
     <TextView
         android:id="@+id/text_welcome"
@@ -33,19 +58,9 @@
         app:layout_constraintTop_toBottomOf="@+id/logo_app"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/text_description"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:gravity="center"
-        android:text="@string/welcome_description"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="21sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_app" />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
