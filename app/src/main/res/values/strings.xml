@@ -36,4 +36,19 @@
     <string name="transactions">Transactions</string>
     <string name="statistics">Statistics</string>
     <string name="financial_report">Financial Report</string>
+    <string name="euro_symbol">€</string>
+    <string name="confirm">Confirm</string>
+    <string name="earnings">Earnings</string>
+    <string name="outflows">Outflows</string>
+    <string name="transaction_description">Choose a macro category, a category and enter the amount</string>
+    <string name="salary">Salary</string>
+    <string name="pension">Pension</string>
+    <string name="gift">Gift</string>
+    <string name="income">Income</string>
+    <string name="other">Other</string>
+    <string name="health">Health</string>
+    <string name="car">Car</string>
+    <string name="shopping">Shopping</string>
+    <string name="inforequired">Please, enter all the required information.</string>
+    <string name="wrong">Something went wrong</string>
 </resources>

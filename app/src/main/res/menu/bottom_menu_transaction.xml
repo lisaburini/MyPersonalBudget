@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_earnings"
+        android:title="@string/earnings"
+        android:icon="@drawable/ic_earnings_24dp"
+        android:checked="true"/>
+    <item
+        android:id="@+id/menu_outflows"
+        android:icon="@drawable/ic_outflows_24dp"
+        android:title="@string/outflows"/>
+</menu>

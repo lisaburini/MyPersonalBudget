@@ -3,9 +3,9 @@
     package="com.example.mypersonalbudget">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".NewTransactionActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,35 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.login.SignUpActivity"
-            android:label="@string/title_activity_sign_up">
-        </activity>
-
+            android:label="@string/title_activity_sign_up"></activity>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
-
-        <activity android:name=".ui.login.IntroActivity"/>
-
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".ui.login.IntroActivity" />
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile">
-        </activity>
-
+            android:label="@string/title_activity_profile"></activity>
         <activity
             android:name=".EditProfileActivity"
-            android:label="@string/title_activity_edit_profile">
-        </activity>
-
+            android:label="@string/title_activity_edit_profile"></activity>
         <activity
             android:name=".ChangePasswordActivity"
-            android:label="@string/change_password">
-        </activity>
-
-
+            android:label="@string/change_password"></activity>
     </application>
 
 </manifest>
