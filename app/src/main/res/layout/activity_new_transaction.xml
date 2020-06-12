@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewTransactionActivity">
+
+    <TextView
+        android:id="@+id/transaction_description"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/transaction_description"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_transaction_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transaction_description">
+
+
+        <RadioButton
+            android:id="@+id/earnings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="30dp"
+            android:text="@string/earnings"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/outflows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="30dp"
+            android:text="@string/outflows"
+            android:textSize="25sp" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroup_earnings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup_outflows"
+        app:layout_constraintTop_toTopOf="@+id/radioGroup_outflows">
+
+        <RadioButton
+            android:id="@+id/salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/salary"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/pension"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pension"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/gift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gift"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/income"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/other_earnings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other"
+            android:textSize="25sp" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroup_outflows"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="57dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_transaction_type">
+
+        <RadioButton
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/health"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/car"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/shopping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shopping"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:id="@+id/other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/other"
+            android:textSize="25sp" />
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/transaction_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:text="0"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_outflows" />
+
+    <TextView
+        android:id="@+id/euro_symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/euro_symbol"
+        android:textColor="@android:color/black"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroup_outflows"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/transaction_amount"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_outflows" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transaction_amount" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
