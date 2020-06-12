@@ -9,13 +9,12 @@
         android:id="@+id/logo_app"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="111dp"
         android:adjustViewBounds="false"
         android:background="#80FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:cropToPadding="true"
-        android:foreground="@drawable/logo_app_arrotondato"
         android:scaleType="centerInside"
         android:src="@drawable/ic_launcher_background"
         android:visibility="visible"
@@ -27,20 +26,22 @@
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
 
+    <!-- android:foreground="@drawable/logo_app_arrotondato" -->
+
     <TextView
         android:id="@+id/text_description"
-        android:layout_width="311dp"
-        android:layout_height="376dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="310dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="60dp"
         android:gravity="center"
         android:text="@string/welcome_description"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#000000"
-        android:textSize="12sp"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_app" />
 
@@ -48,20 +49,16 @@
         android:id="@+id/text_welcome"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/welcome"
         android:textAlignment="center"
-        android:textSize="21sp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/text_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_app"
         app:layout_constraintVertical_bias="1.0" />
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
