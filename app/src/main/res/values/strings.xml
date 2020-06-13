@@ -21,7 +21,7 @@
     <string name="welcome_description">"Hi and thanks for downloading our app! Here are some tips to get you started: use the navigation bar at the bottom of your screen to move around the main sections of our app, for other tips and tricks click on the ? button."</string>
     <string name="profile">"Profile"</string>
     <string name="edit_profile">"Edit Profile"</string>
-    <string name="logout">"Logout"</string>
+    <string name="logout">"Logout prova"</string>
     <string name="title_activity_profile">"Profile"</string>
     <string name="action_edit">Edit</string>
     <string name="title_activity_edit_profile">"Edit Profile"</string>

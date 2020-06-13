@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.addAuthStateListener(authStateListener);
 
+
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
         fragmentHome = new FragmentHome();

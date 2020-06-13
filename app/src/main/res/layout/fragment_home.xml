@@ -15,6 +15,7 @@
         android:background="#80FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:cropToPadding="true"
+        android:foreground="@drawable/logo_app_arrotondato"
         android:scaleType="centerInside"
         android:src="@drawable/ic_launcher_background"
         android:visibility="visible"

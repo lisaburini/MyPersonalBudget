@@ -20,21 +20,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_log"
         app:layout_constraintTop_toTopOf="@+id/button_log"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.24"
+        tools:ignore="ContentDescription"/>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="87dp"
+        android:layout_width="144dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="124dp"
+        android:adjustViewBounds="false"
+        android:background="#80FFFFFF"
+        android:backgroundTint="#FFFFFF"
+        android:cropToPadding="true"
+        android:foreground="@drawable/logo_app_arrotondato"
+        android:radius="60px"
+        android:scaleType="centerInside"
         android:src="@drawable/ic_launcher_background"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/textView_first"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.517" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/textView_first"
@@ -48,8 +58,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.614" />
 
     <Button
         android:id="@+id/button_log"
