@@ -5,11 +5,13 @@ public class Transaction {
     private String category;
     private String title;
     private float amount;
+    private String date;
 
-    public Transaction(String category, String title, float amount) {
+    public Transaction(String category, String title, float amount, String date) {
         this.category = category;
         this.title = title;
         this.amount = amount;
+        this.date = date;
     }
 
     public String getCategory() {
@@ -22,5 +24,9 @@ public class Transaction {
 
     public float getAmount() {
         return amount;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

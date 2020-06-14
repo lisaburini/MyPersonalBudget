@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,16 @@ import com.example.mypersonalbudget.NewTransactionActivity;
 import com.example.mypersonalbudget.R;
 import com.example.mypersonalbudget.entities.Transaction;
 import com.example.mypersonalbudget.ui.utilities.TransactionsAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -30,6 +41,9 @@ public class FragmentTransactions extends Fragment {
     private ArrayList<Transaction> transactions;
     private ImageButton btnAdd;
     private TextView actualMoney;
+    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +60,37 @@ public class FragmentTransactions extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         transactionsAdapter = new TransactionsAdapter(transactions);
         recyclerView.setAdapter(transactionsAdapter);
+
+        Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni").orderBy("createdAt", Query.Direction.ASCENDING);
+        allTransactionsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document: task.getResult()) {
+                        String category = document.getString("tipologia");
+                        String title = document.getString("categoria");
+                        float amount = Float.parseFloat(document.getString("cifra"));
+                        String date = document.getString("data");
+                        Transaction transaction = new Transaction(category, title, amount, date);
+                        transactions.add(transaction);
+                        float tot = 0;
+                        for (Transaction i:transactions) {
+                            if(i.getCategory().equals("Earnings")) {
+                                tot += i.getAmount();
+                                actualMoney.setText(tot+" €");
+                            } else if(i.getCategory().equals("Outflows")) {
+                                tot -= i.getAmount();
+                                actualMoney.setText(tot+" €");
+                            }
+                        }
+
+                        transactionsAdapter.notifyDataSetChanged();
+                    }
+                } else {
+                    Toast.makeText( getActivity().getBaseContext(), getString(R.string.wrong),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         btnAdd = view.findViewById(R.id.button_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -64,23 +109,31 @@ public class FragmentTransactions extends Fragment {
         super.onActivityResult(requestCode, resultCode, intent);
         if(requestCode == TRANSACTION_REQUEST) {
             if(resultCode == MainActivity.RESULT_OK) {
-                    String category = intent.getExtras().getString("category");
-                    String title = intent.getExtras().getString("title");
-                    float amount = Float.parseFloat(intent.getExtras().getString("amount"));
-                    Transaction transaction = new Transaction(category, title, amount);
-                    transactions.add(transaction);
-                    float tot = 0;
-                    for (Transaction i:transactions) {
-                        if(i.getCategory().equals("Earnings")) {
-                            tot += i.getAmount();
-                            actualMoney.setText(tot+" €");
-                        } else if(i.getCategory().equals("Outflows")) {
-                            tot -= i.getAmount();
-                            actualMoney.setText(tot+" €");
+                String id = intent.getExtras().getString("id");
+                docRef = db.collection("utenti").document(uid).collection("transazioni").document(id);
+                docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String category = documentSnapshot.getString("tipologia");
+                        String title = documentSnapshot.getString("categoria");
+                        float amount = Float.parseFloat(documentSnapshot.getString("cifra"));
+                        String date = documentSnapshot.getString("data");
+                        Transaction transaction = new Transaction(category, title, amount, date);
+                        transactions.add(transaction);
+                        float tot = 0;
+                        for (Transaction i:transactions) {
+                            if(i.getCategory().equals("Earnings")) {
+                                tot += i.getAmount();
+                                actualMoney.setText(tot+" €");
+                            } else if(i.getCategory().equals("Outflows")) {
+                                tot -= i.getAmount();
+                                actualMoney.setText(tot+" €");
+                            }
                         }
-                    }
 
-                    transactionsAdapter.notifyDataSetChanged();
+                        transactionsAdapter.notifyDataSetChanged();
+                    }
+                });
             }
         }
     }

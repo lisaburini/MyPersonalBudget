@@ -16,13 +16,14 @@ import java.util.ArrayList;
 public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapter.CViewHolder> {
 
     class CViewHolder extends RecyclerView.ViewHolder {
-        TextView textCategory, textTitle, textAmount;
+        TextView textCategory, textTitle, textAmount, textDate;
 
         CViewHolder(@NonNull View itemView) {
             super(itemView);
             textCategory = itemView.findViewById(R.id.text_category);
             textTitle = itemView.findViewById(R.id.text_title);
             textAmount = itemView.findViewById(R.id.text_amount);
+            textDate = itemView.findViewById(R.id.text_date);
         }
     }
 
@@ -43,6 +44,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsAdapte
         holder.textCategory.setText(structure.get(position).getCategory());
         holder.textTitle.setText(structure.get(position).getTitle());
         holder.textAmount.setText(structure.get(position).getAmount()+" €");
+        holder.textDate.setText(structure.get(position).getDate());
     }
 
     @Override

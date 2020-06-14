@@ -26,4 +26,12 @@
         android:textAlignment="center"
         android:id="@+id/text_amount"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:id="@+id/text_date"/>
+
 </LinearLayout>

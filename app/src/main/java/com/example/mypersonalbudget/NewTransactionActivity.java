@@ -2,6 +2,7 @@ package com.example.mypersonalbudget;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,15 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewTransactionActivity extends AppCompatActivity {
 
@@ -67,19 +77,40 @@ public class NewTransactionActivity extends AppCompatActivity {
                 } else if (selectedCategory == outflowsCategory) {
                     selectedTransiction = (RadioButton)findViewById(outflows.getCheckedRadioButtonId());
                 }
-                try {
-                    Intent intent = new Intent();
-                    intent.putExtra("category", selectedCategory.getText().toString());
-                    intent.putExtra("title", selectedTransiction.getText().toString());
-                    intent.putExtra("amount", textAmount.getText().toString());
-                    setResult(RESULT_OK, intent);
-                    finish();
-                } catch (Exception e) {
-                    Toast.makeText(NewTransactionActivity.this, getString(R.string.inforequired), Toast.LENGTH_SHORT).show();
+
+                String category = selectedCategory.getText().toString();
+                String title = selectedTransiction.getText().toString();
+                String amount = textAmount.getText().toString();
+                if(TextUtils.isEmpty(category) || TextUtils.isEmpty(title) || TextUtils.isEmpty(amount)) {
+                    Toast.makeText(NewTransactionActivity.this, getString(R.string.inforequired),Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                String idTransaction = writeTransactionToDbAndGetId(category, title, amount, uid);
+
+                Intent intent = new Intent();
+                intent.putExtra("id", idTransaction);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
 
+    }
+
+    private String writeTransactionToDbAndGetId(String category, String title, String amount, String uid) {
+        Map<String, Object> transaction = new HashMap<>();
+        transaction.put("tipologia", category);
+        transaction.put("categoria", title);
+        transaction.put("cifra", amount);
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        transaction.put("data", date);
+        transaction.put("createdAt", Timestamp.now());
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String id = db.collection("utenti").document(uid).collection("transazioni").document().getId();
+        db.collection("utenti").document(uid).collection("transazioni").document(id).set(transaction);
+        return id;
     }
 
 }
