@@ -8,9 +8,24 @@
 
 
     <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/BarChart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/GrafBarre"
-        ></com.github.mikephil.charting.charts.LineChart>
+        android:layout_height="294dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="163dp"
+        android:layout_marginBottom="275dp" />
+
+    <TextView
+        android:id="@+id/NomeGrafico"
+        android:layout_width="189dp"
+        android:layout_height="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp"
+        android:text="@string/GraphicReport"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
 </RelativeLayout>

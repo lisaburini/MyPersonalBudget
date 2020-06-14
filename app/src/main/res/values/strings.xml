@@ -52,4 +52,6 @@
     <string name="shopping">Shopping</string>
     <string name="inforequired">Please, enter all the required information.</string>
     <string name="wrong">Something went wrong</string>
+    <string name="GraphicReport">Graphic Report</string>
+    <string name="GraphDescription">Prova 1234567890 Ciao</string>
 </resources>
