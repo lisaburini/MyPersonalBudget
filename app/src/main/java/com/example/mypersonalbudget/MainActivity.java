@@ -21,6 +21,8 @@ import com.example.mypersonalbudget.ui.login.IntroActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -97,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
             } */
         }
     };
+
+
 
     //Per collegare il file xml del menù alla main activity
     @Override

@@ -7,15 +7,15 @@
     android:layout_height="match_parent">
 
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/BarChart"
-        android:layout_width="match_parent"
-        android:layout_height="294dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+    <com.anychart.AnyChartView
+        android:id="@+id/GraficoABarre"
+        android:layout_width="277dp"
+        android:layout_height="280dp"
+        android:layout_below="@+id/NomeGrafico"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="163dp"
-        android:layout_marginBottom="275dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="59dp" />
 
     <TextView
         android:id="@+id/NomeGrafico"
@@ -23,7 +23,7 @@
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="34dp"
         android:text="@string/GraphicReport"
         android:textAlignment="center"
         android:textSize="24sp" />

@@ -1,2 +1,2 @@
 rootProject.name='MyPersonalBudget'
-include ':app'
+include ':app', ':gradle-wrapper'

@@ -2,29 +2,32 @@ package com.example.mypersonalbudget.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.chart.common.listener.ListenersInterface;
+import com.anychart.charts.Pie;
 import com.example.mypersonalbudget.R;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.listener.ChartTouchListener;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentStatistics extends Fragment {
+
+    /*
+    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef;
+    */
 
     @Override
     public void onCreate(Bundle SavedInstanceState) {
@@ -35,35 +38,18 @@ public class FragmentStatistics extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_statistics, container, false);
 
-        BarChart chart = (BarChart) view.findViewById(R.id.BarChart);
+        Pie pie = AnyChart.pie();
 
-        ArrayList<com.github.mikephil.charting.data.BarEntry> BarEntry = new ArrayList<>();
-        ArrayList<String> labels = new ArrayList<>();
+        List<DataEntry> data = new ArrayList<>();
+        data.add(new ValueDataEntry("John", 10000));
+        data.add(new ValueDataEntry("Jake", 12000));
+        data.add(new ValueDataEntry("Peter", 18000));
 
-        BarEntry.add(new BarEntry(2f, 0));
-        BarEntry.add(new BarEntry(4f, 1));
-        BarEntry.add(new BarEntry(6f, 2));
-        BarEntry.add(new BarEntry(8f, 3));
-        BarEntry.add(new BarEntry(7f, 4));
-        BarEntry.add(new BarEntry(3f, 5));
+        pie.data(data);
 
-        BarDataSet dataSet = new BarDataSet(BarEntry, "Projects");
+        AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.GraficoABarre);
+        anyChartView.setChart(pie);
 
-        labels.add("January");
-        labels.add("February");
-        labels.add("March");
-        labels.add("April");
-        labels.add("May");
-        labels.add("June");
-
-        BarData data = new BarData((IBarDataSet) labels, dataSet);
-
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        chart.setData(data);
-
-        Description description = new Description();
-        description.setText(getString(R.string.GraphDescription));
-        chart.setDescription(description);
 
     return view;
     }
