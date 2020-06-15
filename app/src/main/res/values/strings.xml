@@ -46,10 +46,12 @@
     <string name="pension">Pension</string>
     <string name="gift">Gift</string>
     <string name="income">Income</string>
-    <string name="other">Other</string>
+    <string name="earnings_other">+Other</string>
     <string name="health">Health</string>
     <string name="car">Car</string>
     <string name="shopping">Shopping</string>
+    <string name="outflows_other">-Other</string>
+    <string name="filter_description">Choose a category to filter and its macro category</string>
     <string name="inforequired">Please, enter all the required information.</string>
     <string name="wrong">Something went wrong</string>
     <string name="GraphicReport">Graphic Report</string>

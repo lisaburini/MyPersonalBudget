@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mypersonalbudget.CategoryFilterActivity;
 import com.example.mypersonalbudget.MainActivity;
 import com.example.mypersonalbudget.NewTransactionActivity;
 import com.example.mypersonalbudget.R;
@@ -31,15 +32,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class FragmentTransactions extends Fragment {
 
-    public static final int TRANSACTION_REQUEST = 101;
+    public static final int NEW_TRANSACTION_REQUEST = 101;
+    public static final int FILTER_CATEGORY_REQUEST = 102;
     private RecyclerView recyclerView;
-    private TransactionsAdapter transactionsAdapter;
-    private ArrayList<Transaction> transactions;
-    private ImageButton btnAdd;
+    private TransactionsAdapter transactionsAdapter, transactionsAdapterFilter;
+    private ArrayList<Transaction> transactions, transactionsFilter;
+    private ImageButton btnAdd, filterList, filterCalendar;
     private TextView actualMoney;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -87,7 +88,7 @@ public class FragmentTransactions extends Fragment {
                         transactionsAdapter.notifyDataSetChanged();
                     }
                 } else {
-                    Toast.makeText( getActivity().getBaseContext(), getString(R.string.wrong),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), getString(R.string.wrong),Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -97,7 +98,16 @@ public class FragmentTransactions extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), NewTransactionActivity.class);
-                startActivityForResult(intent, TRANSACTION_REQUEST);
+                startActivityForResult(intent, NEW_TRANSACTION_REQUEST);
+            }
+        });
+
+        filterList = view.findViewById(R.id.filter);
+        filterList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CategoryFilterActivity.class);
+                startActivityForResult(intent, FILTER_CATEGORY_REQUEST);
             }
         });
 
@@ -107,7 +117,7 @@ public class FragmentTransactions extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if(requestCode == TRANSACTION_REQUEST) {
+        if(requestCode == NEW_TRANSACTION_REQUEST) {
             if(resultCode == MainActivity.RESULT_OK) {
                 String id = intent.getExtras().getString("id");
                 docRef = db.collection("utenti").document(uid).collection("transazioni").document(id);
@@ -132,6 +142,48 @@ public class FragmentTransactions extends Fragment {
                         }
 
                         transactionsAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+        }
+
+        if(requestCode == FILTER_CATEGORY_REQUEST) {
+            if(resultCode == MainActivity.RESULT_OK) {
+                String filterCategory = intent.getExtras().getString("filter_category");
+
+                transactionsFilter = new ArrayList<>();
+                transactionsAdapterFilter = new TransactionsAdapter(transactionsFilter);
+                recyclerView.setAdapter(transactionsAdapterFilter);
+                actualMoney.setText(" ");
+
+                Query filterTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni").whereEqualTo("categoria", filterCategory).orderBy("createdAt", Query.Direction.ASCENDING);
+                filterTransactionsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document: task.getResult()) {
+                                String category = document.getString("tipologia");
+                                String title = document.getString("categoria");
+                                float amount = Float.parseFloat(document.getString("cifra"));
+                                String date = document.getString("data");
+                                Transaction transaction = new Transaction(category, title, amount, date);
+                                transactionsFilter.add(transaction);
+                                float tot = 0;
+                                for (Transaction i:transactionsFilter) {
+                                    if(i.getCategory().equals("Earnings")) {
+                                        tot += i.getAmount();
+                                        actualMoney.setText(tot+" €");
+                                    } else if(i.getCategory().equals("Outflows")) {
+                                        tot -= i.getAmount();
+                                        actualMoney.setText(tot+" €");
+                                    }
+                                }
+
+                                transactionsAdapterFilter.notifyDataSetChanged();
+                            }
+                        } else {
+                            Toast.makeText(getActivity().getApplicationContext(), getString(R.string.wrong),Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

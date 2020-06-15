@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".NewTransactionActivity">
+    tools:context=".CategoryFilterActivity">
 
     <TextView
-        android:id="@+id/transaction_description"
+        android:id="@+id/filter_category_description"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/transaction_description"
+        android:text="@string/filter_description"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -22,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/radioGroup_transaction_type"
+        android:id="@+id/radioGroup_filter_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -30,11 +29,11 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transaction_description">
+        app:layout_constraintTop_toBottomOf="@+id/filter_category_description">
 
 
         <RadioButton
-            android:id="@+id/earnings"
+            android:id="@+id/filter_earnings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="30dp"
@@ -42,7 +41,7 @@
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/outflows"
+            android:id="@+id/filter_outflows"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="30dp"
@@ -52,37 +51,37 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/radioGroup_earnings"
+        android:id="@+id/radioGroup_filter_earnings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/radioGroup_outflows"
-        app:layout_constraintTop_toTopOf="@+id/radioGroup_outflows">
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup_filter_outflows"
+        app:layout_constraintTop_toTopOf="@+id/radioGroup_filter_outflows">
 
         <RadioButton
-            android:id="@+id/salary"
+            android:id="@+id/filter_salary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/salary"
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/pension"
+            android:id="@+id/filter_pension"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pension"
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/gift"
+            android:id="@+id/filter_gift"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gift"
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/income"
+            android:id="@+id/filter_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/income"
@@ -98,45 +97,45 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/radioGroup_outflows"
+        android:id="@+id/radioGroup_filter_outflows"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="57dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup_transaction_type">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_filter_type">
 
         <RadioButton
-            android:id="@+id/home"
+            android:id="@+id/filter_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/home"
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/health"
+            android:id="@+id/filter_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/health"
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/car"
+            android:id="@+id/filter_car"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/car"
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/shopping"
+            android:id="@+id/filter_shopping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/shopping"
             android:textSize="25sp" />
 
         <RadioButton
-            android:id="@+id/other_outflows"
+            android:id="@+id/filter_other_outflows"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/outflows_other"
@@ -144,40 +143,14 @@
 
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/transaction_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:text="0"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup_outflows" />
-
-    <TextView
-        android:id="@+id/euro_symbol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/euro_symbol"
-        android:textColor="@android:color/black"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="@+id/radioGroup_outflows"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/transaction_amount"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup_outflows" />
-
     <Button
-        android:id="@+id/btnConfirm"
+        android:id="@+id/button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="35dp"
         android:text="@string/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transaction_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_filter_outflows" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewTransactionActivity"></activity>
+        <activity android:name=".CategoryFilterActivity"></activity>
+        <activity android:name=".NewTransactionActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,20 +25,20 @@
         </activity>
         <activity
             android:name=".ui.login.SignUpActivity"
-            android:label="@string/title_activity_sign_up"></activity>
+            android:label="@string/title_activity_sign_up" />
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
         <activity android:name=".ui.login.IntroActivity" />
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile"></activity>
+            android:label="@string/title_activity_profile" />
         <activity
             android:name=".EditProfileActivity"
-            android:label="@string/title_activity_edit_profile"></activity>
+            android:label="@string/title_activity_edit_profile" />
         <activity
             android:name=".ChangePasswordActivity"
-            android:label="@string/change_password"></activity>
+            android:label="@string/change_password" />
     </application>
 
 </manifest>

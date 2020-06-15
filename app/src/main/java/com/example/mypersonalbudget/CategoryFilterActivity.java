@@ -1,47 +1,35 @@
 package com.example.mypersonalbudget;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.Timestamp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-
-public class NewTransactionActivity extends AppCompatActivity {
+public class CategoryFilterActivity extends AppCompatActivity {
 
     private RadioGroup transactionCategory, earnings, outflows;
     private RadioButton earningsCategory, outflowsCategory, selectedCategory, selectedTransaction;
-    private EditText textAmount;
     private Button btnConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_transaction);
+        setContentView(R.layout.activity_category_filter);
 
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
-        transactionCategory = (RadioGroup)findViewById(R.id.radioGroup_transaction_type);
-        earningsCategory = (RadioButton)findViewById(R.id.earnings);
-        outflowsCategory = (RadioButton)findViewById(R.id.outflows);
-        earnings = (RadioGroup)findViewById(R.id.radioGroup_earnings);
-        outflows = (RadioGroup)findViewById(R.id.radioGroup_outflows);
-        textAmount = (EditText)findViewById(R.id.transaction_amount);
-        btnConfirm = (Button)findViewById(R.id.btnConfirm);
+        transactionCategory = (RadioGroup)findViewById(R.id.radioGroup_filter_type);
+        earningsCategory = (RadioButton)findViewById(R.id.filter_earnings);
+        outflowsCategory = (RadioButton)findViewById(R.id.filter_outflows);
+        earnings = (RadioGroup)findViewById(R.id.radioGroup_filter_earnings);
+        outflows = (RadioGroup)findViewById(R.id.radioGroup_filter_outflows);
+        btnConfirm = (Button)findViewById(R.id.button_confirm);
 
         earningsCategory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,39 +68,19 @@ public class NewTransactionActivity extends AppCompatActivity {
 
                     String category = selectedCategory.getText().toString();
                     String title = selectedTransaction.getText().toString();
-                    String amount = textAmount.getText().toString();
-                    if(TextUtils.isEmpty(category) || TextUtils.isEmpty(title) || TextUtils.isEmpty(amount)) {
-                        Toast.makeText(NewTransactionActivity.this, getString(R.string.inforequired),Toast.LENGTH_SHORT).show();
+                    if(TextUtils.isEmpty(category) || TextUtils.isEmpty(title)) {
+                        Toast.makeText(CategoryFilterActivity.this, getString(R.string.inforequired),Toast.LENGTH_SHORT).show();
                     }
 
-                    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    String idTransaction = writeTransactionToDbAndGetId(category, title, amount, uid);
-
                     Intent intent = new Intent();
-                    intent.putExtra("id", idTransaction);
+                    intent.putExtra("filter_category", title);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(NewTransactionActivity.this, getString(R.string.wrong),Toast.LENGTH_SHORT).show();
+            Toast.makeText(CategoryFilterActivity.this, getString(R.string.wrong),Toast.LENGTH_SHORT).show();
         }
+
     }
-
-    private String writeTransactionToDbAndGetId(String category, String title, String amount, String uid) {
-        Map<String, Object> transaction = new HashMap<>();
-        transaction.put("tipologia", category);
-        transaction.put("categoria", title);
-        transaction.put("cifra", amount);
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
-        transaction.put("data", date);
-        transaction.put("createdAt", Timestamp.now());
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String id = db.collection("utenti").document(uid).collection("transazioni").document().getId();
-        db.collection("utenti").document(uid).collection("transazioni").document(id).set(transaction);
-        return id;
-    }
-
 }
-
