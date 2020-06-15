@@ -12,23 +12,12 @@
         android:padding="10dp">
 
         <ImageButton
-            android:id="@+id/calendar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ic_date_range_30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageButton
             android:id="@+id/filter"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="75dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="45dp"
             android:background="@drawable/ic_filter_list_30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

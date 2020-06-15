@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -55,32 +54,30 @@ public class CategoryFilterActivity extends AppCompatActivity {
             }
         });
 
-        try {
-            btnConfirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedCategory = (RadioButton)findViewById(transactionCategory.getCheckedRadioButtonId());
-                    if (selectedCategory == earningsCategory) {
-                        selectedTransaction = (RadioButton)findViewById(earnings.getCheckedRadioButtonId());
-                    } else if (selectedCategory == outflowsCategory) {
-                        selectedTransaction = (RadioButton)findViewById(outflows.getCheckedRadioButtonId());
-                    }
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedCategory = (RadioButton)findViewById(transactionCategory.getCheckedRadioButtonId());
+                if (selectedCategory == earningsCategory) {
+                    selectedTransaction = (RadioButton)findViewById(earnings.getCheckedRadioButtonId());
+                } else if (selectedCategory == outflowsCategory) {
+                    selectedTransaction = (RadioButton)findViewById(outflows.getCheckedRadioButtonId());
+                }
 
-                    String category = selectedCategory.getText().toString();
+                try {
                     String title = selectedTransaction.getText().toString();
-                    if(TextUtils.isEmpty(category) || TextUtils.isEmpty(title)) {
-                        Toast.makeText(CategoryFilterActivity.this, getString(R.string.inforequired),Toast.LENGTH_SHORT).show();
-                    }
 
                     Intent intent = new Intent();
                     intent.putExtra("filter_category", title);
                     setResult(RESULT_OK, intent);
                     finish();
+                } catch (NullPointerException e) {
+                    Toast.makeText(CategoryFilterActivity.this, getString(R.string.inforequired),Toast.LENGTH_SHORT).show();
+                    return;
                 }
-            });
-        } catch (Exception e) {
-            Toast.makeText(CategoryFilterActivity.this, getString(R.string.wrong),Toast.LENGTH_SHORT).show();
-        }
+
+            }
+        });
 
     }
 }

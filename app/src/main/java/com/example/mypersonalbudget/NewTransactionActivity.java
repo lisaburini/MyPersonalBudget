@@ -67,22 +67,23 @@ public class NewTransactionActivity extends AppCompatActivity {
             }
         });
 
-        try {
-            btnConfirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedCategory = (RadioButton)findViewById(transactionCategory.getCheckedRadioButtonId());
-                    if (selectedCategory == earningsCategory) {
-                        selectedTransaction = (RadioButton)findViewById(earnings.getCheckedRadioButtonId());
-                    } else if (selectedCategory == outflowsCategory) {
-                        selectedTransaction = (RadioButton)findViewById(outflows.getCheckedRadioButtonId());
-                    }
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedCategory = (RadioButton)findViewById(transactionCategory.getCheckedRadioButtonId());
+                if (selectedCategory == earningsCategory) {
+                    selectedTransaction = (RadioButton)findViewById(earnings.getCheckedRadioButtonId());
+                } else if (selectedCategory == outflowsCategory) {
+                    selectedTransaction = (RadioButton)findViewById(outflows.getCheckedRadioButtonId());
+                }
 
+                try {
                     String category = selectedCategory.getText().toString();
                     String title = selectedTransaction.getText().toString();
                     String amount = textAmount.getText().toString();
-                    if(TextUtils.isEmpty(category) || TextUtils.isEmpty(title) || TextUtils.isEmpty(amount)) {
+                    if(TextUtils.isEmpty(amount)) {
                         Toast.makeText(NewTransactionActivity.this, getString(R.string.inforequired),Toast.LENGTH_SHORT).show();
+                        return;
                     }
 
                     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -92,11 +93,14 @@ public class NewTransactionActivity extends AppCompatActivity {
                     intent.putExtra("id", idTransaction);
                     setResult(RESULT_OK, intent);
                     finish();
+                } catch (NullPointerException e) {
+                    Toast.makeText(NewTransactionActivity.this, getString(R.string.inforequired),Toast.LENGTH_SHORT).show();
+                    return;
                 }
-            });
-        } catch (Exception e) {
-            Toast.makeText(NewTransactionActivity.this, getString(R.string.wrong),Toast.LENGTH_SHORT).show();
-        }
+
+            }
+        });
+
     }
 
     private String writeTransactionToDbAndGetId(String category, String title, String amount, String uid) {

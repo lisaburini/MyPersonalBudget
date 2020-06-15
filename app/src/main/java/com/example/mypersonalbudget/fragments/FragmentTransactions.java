@@ -40,7 +40,7 @@ public class FragmentTransactions extends Fragment {
     private RecyclerView recyclerView;
     private TransactionsAdapter transactionsAdapter, transactionsAdapterFilter;
     private ArrayList<Transaction> transactions, transactionsFilter;
-    private ImageButton btnAdd, filterList, filterCalendar;
+    private ImageButton btnAdd, filterList;
     private TextView actualMoney;
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -188,6 +188,7 @@ public class FragmentTransactions extends Fragment {
                 });
             }
         }
+
     }
 
 }

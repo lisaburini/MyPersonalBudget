@@ -52,6 +52,7 @@
     <string name="shopping">Shopping</string>
     <string name="outflows_other">-Other</string>
     <string name="filter_description">Choose a category to filter and its macro category</string>
+    <string name="date_description">Choose the date of interest for your financial report</string>
     <string name="inforequired">Please, enter all the required information.</string>
     <string name="wrong">Something went wrong</string>
     <string name="GraphicReport">Graphic Report</string>
