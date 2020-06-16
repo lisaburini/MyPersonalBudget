@@ -18,7 +18,7 @@
     <string name="error_psw_length">"Password must be more than 6 digit"</string>
     <string name="error">"Error"</string>
     <string name="welcome">"Welcome"</string>
-    <string name="welcome_description">"Hi and thanks for downloading our app! Here are some tips to get you started: use the navigation bar at the bottom of your screen to move around the main sections of our app, for other tips and tricks click on the ? button."</string>
+    <string name="welcome_description">"Hi and thanks for downloading our app! Here are some tips to get you started: use the navigation bar at the bottom of your screen to move around the main sections of our app, for other tips and tricks click on the 'Tips' button."</string>
     <string name="profile">"Profile"</string>
     <string name="edit_profile">"Edit Profile"</string>
     <string name="logout">"Logout"</string>
@@ -55,7 +55,6 @@
     <string name="date_description">Choose the date of interest for your financial report</string>
     <string name="inforequired">Please, enter all the required information.</string>
     <string name="wrong">Something went wrong</string>
-    <string name="GraphicReport">Graphic Report</string>
+    <string name="GraphicReport">Statistics</string>
     <string name="GraphDescription">Prova 1234567890 Ciao</string>
-
 </resources>

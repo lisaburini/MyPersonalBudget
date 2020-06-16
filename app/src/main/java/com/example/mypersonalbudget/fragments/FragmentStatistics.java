@@ -12,22 +12,28 @@ import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.chart.common.listener.ListenersInterface;
+import com.anychart.charts.Cartesian;
 import com.anychart.charts.Pie;
+import com.anychart.core.cartesian.series.Bar;
+import com.anychart.core.cartesian.series.Column;
+import com.anychart.enums.Anchor;
+import com.anychart.enums.Position;
 import com.example.mypersonalbudget.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentStatistics extends Fragment {
 
-    /*
+
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef;
-    */
+
 
     @Override
     public void onCreate(Bundle SavedInstanceState) {
@@ -38,17 +44,31 @@ public class FragmentStatistics extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_statistics, container, false);
 
-        Pie pie = AnyChart.pie();
+        Cartesian cartesian = AnyChart.column();
+
+        Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni");
 
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("John", 10000));
         data.add(new ValueDataEntry("Jake", 12000));
         data.add(new ValueDataEntry("Peter", 18000));
 
-        pie.data(data);
+        Column column = cartesian.column(data);
+
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0d)
+                .offsetY(5d)
+                .format("${%Value}{groupsSeparator: }");
+
+        cartesian.animation(true);
+
+        cartesian.title("Wallet Graphic for the last Period");
 
         AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.GraficoABarre);
-        anyChartView.setChart(pie);
+        anyChartView.setChart(cartesian);
 
 
     return view;

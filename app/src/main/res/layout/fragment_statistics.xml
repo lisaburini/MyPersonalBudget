@@ -9,18 +9,18 @@
 
     <com.anychart.AnyChartView
         android:id="@+id/GraficoABarre"
-        android:layout_width="277dp"
+        android:layout_width="313dp"
         android:layout_height="280dp"
         android:layout_below="@+id/NomeGrafico"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="7dp"
         android:layout_marginBottom="59dp" />
 
     <TextView
         android:id="@+id/NomeGrafico"
-        android:layout_width="189dp"
-        android:layout_height="55dp"
+        android:layout_width="193dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
