@@ -29,11 +29,11 @@ import java.util.List;
 
 public class FragmentStatistics extends Fragment {
 
-
-    /*String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+/*
+    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference docRef;*/
-
+    DocumentReference docRef;
+*/
 
     @Override
     public void onCreate(Bundle SavedInstanceState) {
@@ -44,17 +44,28 @@ public class FragmentStatistics extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_statistics, container, false);
 
+        // Crea il grafico a barre.
         Cartesian cartesian = AnyChart.column();
 
-        //Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni");
+     //   Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni");
 
+        /* Crea un Array list con tutti i valore da assegnare. Puoi teoricamente aggiungere
+         * altre variabili come la "y" così da avere altri dati da inserire nella y.
+         * Ricordati che per ogni variabile devi anc he dare un valore.
+         *
+         * Qui poi va anche tutto vuoto, perché i dati saranno presi ed iniettati da Firebase,
+         * quelli che vedi ora sono stati inseriti manualmente da me per provare a vedere se
+         * funzionasse...
+         */
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("John", 10000));
         data.add(new ValueDataEntry("Jake", 12000));
         data.add(new ValueDataEntry("Peter", 18000));
 
+        // Dove andare ad inserire i dati, quindi qui inietta in sintesi.
         Column column = cartesian.column(data);
 
+        // Estetica del grafico, un .xml di Anychart, ma puoi anche lavorarci dall'XML se vuoi.
         column.tooltip()
                 .titleFormat("{%X}")
                 .position(Position.CENTER_BOTTOM)
@@ -63,11 +74,16 @@ public class FragmentStatistics extends Fragment {
                 .offsetY(5d)
                 .format("${%Value}{groupsSeparator: }");
 
+        // Niente di che, animazione quando mostra i dati.
         cartesian.animation(true);
 
+        // Titolo del grafico.
         cartesian.title("Wallet Graphic for the last Period");
 
+        // Stessa roba per Anychart quando chiami un grafico lo devi richiamare qui.
         AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.GraficoABarre);
+
+        // Lascialo così questo, anche quelli sopra, ma te li ho commentati per darti una mano haha.
         anyChartView.setChart(cartesian);
 
 
