@@ -24,9 +24,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLogout;
-    private FirebaseAuth mAuth;
-    private FirebaseUser user;
     private FirebaseAuth firebaseAuth;
     private BottomNavigationView bottomNav;
     private FragmentHome fragmentHome;
@@ -46,35 +43,38 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle(getString(R.string.app_name));
 
-        fragmentHome = new FragmentHome();
-        fragmentTransactions = new FragmentTransactions();
-        fragmentStatistics = new FragmentStatistics();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser != null) {
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentHome).commit();
+            fragmentHome = new FragmentHome();
+            fragmentTransactions = new FragmentTransactions();
+            fragmentStatistics = new FragmentStatistics();
 
-        bottomNav = findViewById(R.id.bottom_nav);
-        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
-                switch (item.getItemId()) {
-                    case R.id.menu_home:
-                        selectedFragment = fragmentHome;
-                        break;
-                    case R.id.menu_transactions:
-                        selectedFragment = fragmentTransactions;
-                        break;
-                    case R.id.menu_statistics:
-                        selectedFragment = fragmentStatistics;
-                        break;
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragmentHome).commit();
+
+            bottomNav = findViewById(R.id.bottom_nav);
+            bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+                    switch (item.getItemId()) {
+                        case R.id.menu_home:
+                            selectedFragment = fragmentHome;
+                            break;
+                        case R.id.menu_transactions:
+                            selectedFragment = fragmentTransactions;
+                            break;
+                        case R.id.menu_statistics:
+                            selectedFragment = fragmentStatistics;
+                            break;
+                    }
+                    if (selectedFragment != null) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    }
+                    return true;
                 }
-                if(selectedFragment != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-                }
-                return true;
-            }
-        });
-
+            });
+        }
     }
 
     FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(){
-        mAuth.getInstance().signOut();
+        firebaseAuth.getInstance().signOut();
         finish();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
