@@ -19,11 +19,13 @@ import com.example.mypersonalbudget.MainActivity;
 import com.example.mypersonalbudget.NewTransactionActivity;
 import com.example.mypersonalbudget.R;
 import com.example.mypersonalbudget.entities.Transaction;
+import com.example.mypersonalbudget.ui.login.IntroActivity;
 import com.example.mypersonalbudget.ui.utilities.TransactionsAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,7 +44,7 @@ public class FragmentTransactions extends Fragment {
     private ArrayList<Transaction> transactions, transactionsFilter;
     private ImageButton btnAdd, filterList;
     private TextView actualMoney;
-    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private FirebaseAuth firebaseAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef;
 
@@ -50,7 +52,26 @@ public class FragmentTransactions extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         transactions = new ArrayList<>();
         super.onCreate(savedInstanceState);
+
+        //Check current user
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.addAuthStateListener(authStateListener);
     }
+
+    FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
+        @Override
+        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+            if (firebaseUser == null) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), IntroActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            } else {
+                return;
+            }
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +82,7 @@ public class FragmentTransactions extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         transactionsAdapter = new TransactionsAdapter(transactions);
         recyclerView.setAdapter(transactionsAdapter);
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni").orderBy("createdAt", Query.Direction.ASCENDING);
         allTransactionsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -120,6 +142,7 @@ public class FragmentTransactions extends Fragment {
         if(requestCode == NEW_TRANSACTION_REQUEST) {
             if(resultCode == MainActivity.RESULT_OK) {
                 String id = intent.getExtras().getString("id");
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 docRef = db.collection("utenti").document(uid).collection("transazioni").document(id);
                 docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -156,6 +179,7 @@ public class FragmentTransactions extends Fragment {
                 recyclerView.setAdapter(transactionsAdapterFilter);
                 actualMoney.setText(" ");
 
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Query filterTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni").whereEqualTo("categoria", filterCategory).orderBy("createdAt", Query.Direction.ASCENDING);
                 filterTransactionsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

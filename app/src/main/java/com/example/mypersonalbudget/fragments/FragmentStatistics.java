@@ -30,9 +30,9 @@ import java.util.List;
 public class FragmentStatistics extends Fragment {
 
 
-    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    /*String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference docRef;
+    DocumentReference docRef;*/
 
 
     @Override
@@ -46,7 +46,7 @@ public class FragmentStatistics extends Fragment {
 
         Cartesian cartesian = AnyChart.column();
 
-        Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni");
+        //Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni");
 
         List<DataEntry> data = new ArrayList<>();
         data.add(new ValueDataEntry("John", 10000));
