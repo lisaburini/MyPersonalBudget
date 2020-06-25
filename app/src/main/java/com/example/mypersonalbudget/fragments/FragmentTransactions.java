@@ -42,7 +42,6 @@ public class FragmentTransactions extends Fragment {
     private ArrayList<Transaction> transactions, transactionsFilter;
     private ImageButton btnAdd, filterList;
     private TextView actualMoney;
-    private FirebaseAuth firebaseAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     DocumentReference docRef;

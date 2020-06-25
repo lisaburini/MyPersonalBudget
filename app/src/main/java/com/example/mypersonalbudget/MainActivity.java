@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.example.mypersonalbudget.fragments.FragmentHome;
 import com.example.mypersonalbudget.fragments.FragmentStatistics;
