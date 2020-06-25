@@ -56,7 +56,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     return;
                 }
 
-                if(!TextUtils.isEmpty(pass) && !TextUtils.isEmpty(oldPass) && pass.length()<=6){
+                if(!TextUtils.isEmpty(pass) && !TextUtils.isEmpty(oldPass) && pass.length()<6){
                     Toast.makeText(getApplicationContext(),getString(R.string.error_psw_length),Toast.LENGTH_SHORT).show();
                     return;
                 }

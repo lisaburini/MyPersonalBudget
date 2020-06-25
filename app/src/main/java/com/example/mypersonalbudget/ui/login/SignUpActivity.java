@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),getString(R.string.error_signup_empty),Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(pass.length()<=6){
+                if(pass.length()<6){
                     Toast.makeText(getApplicationContext(),getString(R.string.error_psw_length),Toast.LENGTH_SHORT).show();
                     return;
                 }
