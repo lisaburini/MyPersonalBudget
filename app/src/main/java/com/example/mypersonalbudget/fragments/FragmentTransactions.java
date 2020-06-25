@@ -46,6 +46,7 @@ public class FragmentTransactions extends Fragment {
     private TextView actualMoney;
     private FirebaseAuth firebaseAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     DocumentReference docRef;
 
     @Override
@@ -82,7 +83,6 @@ public class FragmentTransactions extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         transactionsAdapter = new TransactionsAdapter(transactions);
         recyclerView.setAdapter(transactionsAdapter);
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni").orderBy("createdAt", Query.Direction.ASCENDING);
         allTransactionsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -142,7 +142,6 @@ public class FragmentTransactions extends Fragment {
         if(requestCode == NEW_TRANSACTION_REQUEST) {
             if(resultCode == MainActivity.RESULT_OK) {
                 String id = intent.getExtras().getString("id");
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 docRef = db.collection("utenti").document(uid).collection("transazioni").document(id);
                 docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
@@ -179,7 +178,6 @@ public class FragmentTransactions extends Fragment {
                 recyclerView.setAdapter(transactionsAdapterFilter);
                 actualMoney.setText(" ");
 
-                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 Query filterTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni").whereEqualTo("categoria", filterCategory).orderBy("createdAt", Query.Direction.ASCENDING);
                 filterTransactionsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
