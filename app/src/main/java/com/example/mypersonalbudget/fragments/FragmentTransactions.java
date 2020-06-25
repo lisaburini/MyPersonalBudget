@@ -53,26 +53,7 @@ public class FragmentTransactions extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         transactions = new ArrayList<>();
         super.onCreate(savedInstanceState);
-
-        //Check current user
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.addAuthStateListener(authStateListener);
     }
-
-    FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
-        @Override
-        public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-
-            if (firebaseUser == null) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), IntroActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            } else {
-                return;
-            }
-        }
-    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
