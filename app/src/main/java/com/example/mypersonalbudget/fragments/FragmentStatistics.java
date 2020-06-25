@@ -47,7 +47,7 @@ public class FragmentStatistics extends Fragment {
         // Crea il grafico a barre.
         Cartesian cartesian = AnyChart.column();
 
-     //   Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni");
+        // Query allTransactionsQuery = db.collection("utenti").document(uid).collection("transazioni");
 
         /* Crea un Array list con tutti i valore da assegnare. Puoi teoricamente aggiungere
          * altre variabili come la "y" così da avere altri dati da inserire nella y.
@@ -81,7 +81,7 @@ public class FragmentStatistics extends Fragment {
         cartesian.title("Wallet Graphic for the last Period");
 
         // Stessa roba per Anychart quando chiami un grafico lo devi richiamare qui.
-        AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.GraficoABarre);
+        AnyChartView anyChartView = (AnyChartView) view.findViewById(R.id.graficoABarre);
 
         // Lascialo così questo, anche quelli sopra, ma te li ho commentati per darti una mano haha.
         anyChartView.setChart(cartesian);

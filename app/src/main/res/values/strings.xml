@@ -18,7 +18,7 @@
     <string name="error_psw_length">"Password must be more than 6 digit"</string>
     <string name="error">"Error"</string>
     <string name="welcome">"Welcome"</string>
-    <string name="welcome_description">"Hi and thanks for downloading our app! Here are some tips to get you started: use the navigation bar at the bottom of your screen to move around the main sections of our app, for other tips and tricks click on the 'Tips' button."</string>
+    <string name="welcome_description">"Hi and thanks for downloading our app! Here are some tips to get you started: use the navigation bar at the bottom of your screen to move around the main sections of our app, you can manage your profile with the menu on the Profile section."</string>
     <string name="profile">"Profile"</string>
     <string name="edit_profile">"Edit Profile"</string>
     <string name="logout">"Logout"</string>
