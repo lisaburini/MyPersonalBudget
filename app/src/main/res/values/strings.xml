@@ -13,7 +13,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be at least 6 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="app_description">"My Budget: the complete system for your finances"</string>
+    <string name="app_description">"My Personal Budget: the complete system for your finances"</string>
     <string name="error_signup_empty">"Please, enter all your information"</string>
     <string name="error_psw_length">"Password must be at least 6 characters"</string>
     <string name="error">"Error"</string>
