@@ -16,16 +16,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="92dp"
+
         android:layout_marginEnd="48dp"
         android:backgroundTint="@color/colorPrimary"
-
         android:text="@string/action_login"
         android:textColor="@color/textColorPrimaryInverse"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.766"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toEndOf="@+id/btn_cancel"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
@@ -34,14 +34,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
+
         android:layout_marginTop="92dp"
         android:layout_marginEnd="48dp"
-
         android:backgroundTint="#C0BFB8"
         android:text="@string/action_cancel"
         android:textColor="@color/textColorPrimaryInverse"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 

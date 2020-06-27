@@ -70,18 +70,22 @@ public class FragmentTransactions extends Fragment {
                     for (QueryDocumentSnapshot document: task.getResult()) {
                         String category = document.getString("tipologia");
                         String title = document.getString("categoria");
-                        float amount = Float.parseFloat(document.getString("cifra"));
+                        float amount = (float) (Math.round(Float.parseFloat(document.getString("cifra")) * 100.0) / 100.0); //Math.round(input * 100.0) / 100.0;
+
                         String date = document.getString("data");
                         Transaction transaction = new Transaction(category, title, amount, date);
                         transactions.add(transaction);
                         float tot = 0;
+                        float totRound;
                         for (Transaction i:transactions) {
                             if(i.getCategory().equals("Earnings")) {
                                 tot += i.getAmount();
-                                actualMoney.setText(tot+" €");
+                                totRound = (float) (Math.round(tot * 100.0) / 100.0);
+                                actualMoney.setText(totRound+" €");
                             } else if(i.getCategory().equals("Outflows")) {
                                 tot -= i.getAmount();
-                                actualMoney.setText(tot+" €");
+                                totRound = (float) (Math.round(tot * 100.0) / 100.0);
+                                actualMoney.setText(totRound+" €");
                             }
                         }
 
@@ -126,18 +130,21 @@ public class FragmentTransactions extends Fragment {
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         String category = documentSnapshot.getString("tipologia");
                         String title = documentSnapshot.getString("categoria");
-                        float amount = Float.parseFloat(documentSnapshot.getString("cifra"));
+                        float amount = (float) (Math.round(Float.parseFloat(documentSnapshot.getString("cifra")) * 100.0) / 100.0);
                         String date = documentSnapshot.getString("data");
                         Transaction transaction = new Transaction(category, title, amount, date);
                         transactions.add(transaction);
                         float tot = 0;
+                        float totRound;
                         for (Transaction i:transactions) {
                             if(i.getCategory().equals("Earnings")) {
                                 tot += i.getAmount();
-                                actualMoney.setText(tot+" €");
+                                totRound = (float) (Math.round(tot * 100.0) / 100.0);
+                                actualMoney.setText(totRound+" €");
                             } else if(i.getCategory().equals("Outflows")) {
                                 tot -= i.getAmount();
-                                actualMoney.setText(tot+" €");
+                                totRound = (float) (Math.round(tot * 100.0) / 100.0);
+                                actualMoney.setText(totRound+" €");
                             }
                         }
 
@@ -164,18 +171,21 @@ public class FragmentTransactions extends Fragment {
                             for (QueryDocumentSnapshot document: task.getResult()) {
                                 String category = document.getString("tipologia");
                                 String title = document.getString("categoria");
-                                float amount = Float.parseFloat(document.getString("cifra"));
+                                float amount = (float) (Math.round(Float.parseFloat(document.getString("cifra")) * 100.0) / 100.0);
                                 String date = document.getString("data");
                                 Transaction transaction = new Transaction(category, title, amount, date);
                                 transactionsFilter.add(transaction);
                                 float tot = 0;
+                                float totRound;
                                 for (Transaction i:transactionsFilter) {
                                     if(i.getCategory().equals("Earnings")) {
                                         tot += i.getAmount();
-                                        actualMoney.setText(tot+" €");
+                                        totRound = (float) (Math.round(tot * 100.0) / 100.0);
+                                        actualMoney.setText(totRound+" €");
                                     } else if(i.getCategory().equals("Outflows")) {
                                         tot -= i.getAmount();
-                                        actualMoney.setText(tot+" €");
+                                        totRound = (float) (Math.round(tot * 100.0) / 100.0);
+                                        actualMoney.setText(totRound+" €");
                                     }
                                 }
 
