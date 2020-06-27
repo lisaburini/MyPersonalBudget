@@ -62,14 +62,14 @@ public class EditProfileActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "DocumentSnapshot nome successfully updated!");
+                                    //Log.d(TAG, "DocumentSnapshot nome successfully updated!");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(getApplicationContext(),getString(R.string.error),Toast.LENGTH_SHORT).show();
-                                    Log.w(TAG, "Error updating document", e);
+                                    //Log.w(TAG, "Error updating document", e);
                                     return;
                                 }
                             });
@@ -81,14 +81,14 @@ public class EditProfileActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "DocumentSnapshot cognome successfully updated!");
+                                    //Log.d(TAG, "DocumentSnapshot cognome successfully updated!");
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(getApplicationContext(),getString(R.string.error),Toast.LENGTH_SHORT).show();
-                                    Log.w(TAG, "Error updating document", e);
+                                    //Log.w(TAG, "Error updating document", e);
                                     return;
                                 }
                             });

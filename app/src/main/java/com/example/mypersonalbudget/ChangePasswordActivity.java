@@ -79,7 +79,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(),getString(R.string.error),Toast.LENGTH_LONG).show();
                                             return;
                                         } else {
-                                            Log.d(TAG, "Password successfully updated!");
+                                            //Log.d(TAG, "Password successfully updated!");
                                             Toast.makeText(getApplicationContext(),getString(R.string.update_password),Toast.LENGTH_LONG).show();
                                             finish();
                                         }

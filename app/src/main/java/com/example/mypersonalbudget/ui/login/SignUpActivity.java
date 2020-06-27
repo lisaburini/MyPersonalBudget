@@ -81,7 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 //scriviamo nella collection utenti il nome, il cognome e l'email
                                                 writeUserToDb(name, lName, email, user.getUid());
-                                                Log.d(TAG, user.getDisplayName());
+                                                //Log.d(TAG, user.getDisplayName());
                                                 finish();
                                             }
                                         }
