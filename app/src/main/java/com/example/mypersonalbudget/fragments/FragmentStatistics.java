@@ -43,7 +43,7 @@ public class FragmentStatistics extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_statistics, container, false);
-        anyChartView = view.findViewById(R.id.graficoABarre);
+        anyChartView = view.findViewById(R.id.graficoATorta);
         pie = AnyChart.pie();
         return view;
     }

@@ -8,7 +8,7 @@
 
 
     <com.anychart.AnyChartView
-        android:id="@+id/graficoABarre"
+        android:id="@+id/graficoATorta"
         android:layout_width="313dp"
         android:layout_height="280dp"
         android:layout_below="@+id/NomeGrafico"
